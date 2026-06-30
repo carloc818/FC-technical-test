@@ -29,54 +29,199 @@ The UI follows **Swiss International Style** principles:
 
 ## Prerequisites
 
-Install the following before running the project:
+You will need:
 
 1. **Node.js** (version 18 or later) — [https://nodejs.org](https://nodejs.org)
-   - Verify: `node --version`
-2. **npm** (comes with Node.js)
-   - Verify: `npm --version`
+2. **Git** — to clone the repository — [https://git-scm.com](https://git-scm.com)
+3. **npm** — included automatically when you install Node.js
+
+Detailed install and setup instructions are in [Running the Application](#running-the-application) below.
 
 ## Installation
 
-Open a terminal and run these commands from the project root folder.
+If you already have the project folder on your computer (for example, you downloaded it as a ZIP), skip to [Running the Application](#running-the-application).
+
+Otherwise, follow the clone steps in the Running section below first, then return here to install dependencies.
 
 ### 1. Install backend dependencies
+
+Open a terminal in the project folder (see **Step 2** under Running the Application if you are not sure how), then run:
 
 ```bash
 cd backend
 npm install
 ```
 
+Wait until it finishes. You should see a `node_modules` folder appear inside `backend`.
+
 ### 2. Install frontend dependencies
+
+In the same terminal (or a new one), run:
+
+```bash
+cd frontend
+npm install
+```
+
+> **Tip:** If your terminal is still inside the `backend` folder, run `cd ../frontend` first, then `npm install`.
+
+Wait until it finishes. You should see a `node_modules` folder appear inside `frontend`.
+
+## Running the Application
+
+This section walks you through everything from downloading the code to opening the app in your browser. Follow each step in order.
+
+### Step 1 — Install Node.js (one-time setup)
+
+Before anything else, you need **Node.js** installed on your computer. Node.js lets you run the backend and frontend.
+
+1. Go to [https://nodejs.org](https://nodejs.org)
+2. Download the **LTS** version (the one marked "Recommended for most users")
+3. Run the installer and accept the default options
+4. When finished, **close and reopen** any terminal windows so the install is recognized
+
+To confirm Node.js is installed, open a terminal and run:
+
+```bash
+node --version
+```
+
+You should see a version number (for example, `v20.11.0`). If you get an error, Node.js is not installed correctly — try reinstalling and restarting your computer.
+
+### Step 2 — Open a terminal
+
+A **terminal** (also called a command line) is a text window where you type commands.
+
+- **Windows:** Press the Windows key, type `PowerShell`, and open **Windows PowerShell**
+- **Mac:** Press `Cmd + Space`, type `Terminal`, and open **Terminal**
+
+You will use this to download the project and run the app.
+
+### Step 3 — Clone the repository
+
+**Cloning** means copying the project from GitHub onto your computer.
+
+1. In your terminal, go to the folder where you want the project to live. For example, to use your Documents folder:
+
+   **Windows (PowerShell):**
+   ```powershell
+   cd $HOME\Documents
+   ```
+
+   **Mac:**
+   ```bash
+   cd ~/Documents
+   ```
+
+2. Copy the project from GitHub by running this command:
+
+   ```bash
+   git clone https://github.com/carloc818/FC-technical-test.git
+   ```
+
+   > **Don't have Git?** Download and install it from [https://git-scm.com](https://git-scm.com), then close and reopen your terminal before running the command above.
+
+3. When cloning finishes, you will have a new folder called `FC-technical-test`. Move into it:
+
+   ```bash
+   cd FC-technical-test
+   ```
+
+   All remaining commands assume you are inside this folder (the **project root**). You should see folders named `backend`, `frontend`, and a file named `data.csv` if you list the contents.
+
+### Step 4 — Install project dependencies
+
+The project needs extra packages before it can run. You only need to do this once (or again after pulling major updates).
+
+From the project root folder:
+
+```bash
+cd backend
+npm install
+```
+
+Then install the frontend packages:
 
 ```bash
 cd ../frontend
 npm install
 ```
 
-## Running the Application
-
-You need **two terminal windows** — one for the API and one for the UI.
-
-### Terminal 1 — Start the API server
+Go back to the project root when done:
 
 ```bash
-cd backend
-npm run dev
+cd ..
 ```
 
-The API will start at **http://localhost:3002**.
+### Step 5 — Start the application (two terminals)
 
-### Terminal 2 — Start the frontend
+The app has two parts that must run at the same time: the **API** (backend) and the **website** (frontend). Each needs its own terminal window.
 
-```bash
-cd frontend
-npm run dev
-```
+#### Terminal 1 — Start the API (backend)
 
-The web app will start at **http://localhost:5173**. Open that URL in your browser.
+1. Open a **new** terminal window
+2. Go to the project folder and into `backend`:
 
-> The frontend proxies API requests from `/api/*` to the backend, so both servers must be running.
+   ```bash
+   cd path/to/FC-technical-test
+   cd backend
+   ```
+
+   Replace `path/to/FC-technical-test` with the actual location on your computer (for example, `C:\Users\YourName\Documents\FC-technical-test` on Windows).
+
+3. Start the API:
+
+   ```bash
+   npm run dev
+   ```
+
+4. Leave this terminal **open and running**. You should see a message like:
+
+   ```
+   API running at http://localhost:3002
+   ```
+
+   If you see an error about the port already being in use, another copy of the server may still be running. Close other terminals running the backend, or see the [Configuration](#configuration) section to use a different port.
+
+#### Terminal 2 — Start the website (frontend)
+
+1. Open a **second** terminal window (keep Terminal 1 running)
+2. Go to the project folder and into `frontend`:
+
+   ```bash
+   cd path/to/FC-technical-test
+   cd frontend
+   ```
+
+3. Start the website:
+
+   ```bash
+   npm run dev
+   ```
+
+4. Leave this terminal **open and running**. You should see a message with a local URL, usually:
+
+   ```
+   Local:   http://localhost:5173/
+   ```
+
+### Step 6 — Open the app in your browser
+
+1. Open a web browser (Chrome, Edge, Firefox, or Safari)
+2. In the address bar, type: **http://localhost:5173**
+3. Press Enter
+
+You should see the Transaction Management System with a table of sample transactions and an **Add Transaction** button.
+
+> **Important:** Both terminals must stay open while you use the app. If you close either one, the app will stop working until you start it again with `npm run dev`.
+
+### Stopping the application
+
+When you are done:
+
+1. Click each terminal window
+2. Press `Ctrl + C` (Windows/Mac) to stop the running server
+3. Repeat for both terminals
 
 ### Production build (optional)
 
